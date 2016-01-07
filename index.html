@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <style>
+    #music {
+        width: 47px;
+        height: 47px;
+        background: url(img/music.png) no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 7;
+        cursor: pointer;
+    }
+
+    #music.active {
+        -webkit-animation: 1s infinite rotateMusic linear;
+        animation: 1s infinite rotateMusic linear;
+    }
+
+    @-webkit-keyframes rotateMusic {
+        0% {
+            -webkit-transform: rotate(0);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rotateMusic {
+        0% {
+            transform: rotate(0);
+        }
+        100% {
+            transform: rotate(360deg);说
+        }
+    }
+    </style>
+    <script>
+    $(function() {
+        showMusic();
+        function showMusic() {
+            var $music = $('#music');
+            var $a1 = $('#a1');
+            var onoff = true;
+            $music.on('click', function() {
+                if (onoff) {
+                    $(this).attr('class', 'active');
+                    $a1.get(0).play();
+                } else {
+                    $(this).attr('class', '');
+                    $a1.get(0).pause();
+                }
+                onoff = !onoff;
+            });
+            $music.trigger('click');
+        }
+    });
+    </script>
+</head>
+
+<body>
+    <div id="music">
+        <audio id="a1" src="img/369.mp3" preload="auto" loop></audio>
+    </div>
+</body>
+
+</html>
